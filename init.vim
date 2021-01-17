@@ -4,7 +4,6 @@ call plug#begin()
 
 " Aesthetics - Main
 Plug 'dracula/vim', { 'commit': '147f389f4275cec4ef43ebc25e2011c57b45cc00' }
-Plug 'rafi/awesome-vim-colorschemes'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
@@ -15,7 +14,7 @@ Plug 'junegunn/vim-journal'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'nightsense/forgotten'
 Plug 'zaki/zazen'
-Plug 'chriskempson/base16-vim'
+
 
 " Aethetics - Additional
 Plug 'nightsense/nemo'
@@ -37,7 +36,6 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/vim-easy-align'
 Plug 'alvan/vim-closetag'
 Plug 'tpope/vim-abolish'
-Plug 'Yggdroot/indentLine'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
@@ -50,6 +48,12 @@ Plug 'honza/vim-snippets'
 Plug 'metakirby5/codi.vim'
 Plug 'dkarter/bullets.vim'
 Plug 'mfukar/robotframework-vim'
+Plug 'skwp/vim-html-escape'
+Plug 'mxw/vim-jsx'
+Plug 'jparise/vim-graphql'
+Plug 'christophermca/meta5'
+
+
 " Entertainment
 "Plug 'ryanss/vim-hackernews'
 
@@ -60,7 +64,7 @@ let g:python3_host_prog = expand('~/.config/nvim/env/bin/python')
 
 """ Coloring
 syntax on
-color onedark
+colorscheme meta5
 highlight Pmenu guibg=white guifg=black gui=bold
 highlight Comment gui=bold
 highlight Normal gui=none
@@ -91,8 +95,9 @@ set mouse=a
 " NERDTree
 let NERDTreeShowHidden=1
 let NERDTreeWinSize=35
+
 " Airline
-let g:airline_theme='onedark'
+let g:airline_theme='minimalist'
 let g:airline_powerline_fonts = 1
 let g:airline_section_z = ' %{strftime("%-I:%M %p")}'
 let g:airline_section_warning = ''
@@ -124,10 +129,6 @@ let g:UltiSnipsJumpBackwardTrigger="<C-x>"
 " EasyAlign
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
-
-" indentLine
-let g:indentLine_char = '▏'
-let g:indentLine_color_gui = '#363949'
 
 " TagBar
 let g:tagbar_width = 30
@@ -191,11 +192,9 @@ nmap <leader>l :Limelight!!<CR>
 xmap <leader>l :Limelight!!<CR>
 autocmd FileType python nmap <leader>x :0,$!~/.config/nvim/env/bin/python -m yapf<CR>
 "nmap <leader>n :HackerNews best<CR>J
-nmap <silent> <leader><leader> :noh<CR>
+    nmap <silent> <leader><leader> :noh<CR>
 nmap <Tab> :bnext<CR>
 nmap <S-Tab> :bprevious<CR>
 nmap <leader>d :t. <CR>
 
 nnoremap <silent><c-s> :<c-u>update<cr>
-
-
