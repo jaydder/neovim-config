@@ -1,108 +1,64 @@
-
 """ Vim-Plug
 call plug#begin()
 
-" Aesthetics - Main
-Plug 'dracula/vim', { 'commit': '147f389f4275cec4ef43ebc25e2011c57b45cc00' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'ryanoasis/vim-devicons'
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
-Plug 'junegunn/seoul256.vim'
-Plug 'junegunn/vim-journal'
-Plug 'junegunn/rainbow_parentheses.vim'
-Plug 'nightsense/forgotten'
-Plug 'zaki/zazen'
-
-
-" Aethetics - Additional
-Plug 'nightsense/nemo'
-Plug 'yuttie/hydrangea-vim'
-Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim' }
-Plug 'rhysd/vim-color-spring-night'
-
-" Functionalities
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-surround'
-Plug 'majutsushi/tagbar'
+Plug 'andreypopp/vim-colors-plain'
+Plug 'vim-python/python-syntax'
+Plug 'w0ng/vim-hybrid'
+Plug 'daylerees/colour-schemes'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-jedi'
-Plug 'ervandew/supertab'
-Plug 'jiangmiao/auto-pairs'
-Plug 'junegunn/vim-easy-align'
 Plug 'alvan/vim-closetag'
+Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-abolish'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
-Plug 'chrisbra/Colorizer'
-Plug 'KabbAmine/vCoolor.vim'
-Plug 'heavenshell/vim-pydocstring', { 'do': 'make install' }
-Plug 'vim-scripts/loremipsum'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'metakirby5/codi.vim'
-Plug 'dkarter/bullets.vim'
 Plug 'mfukar/robotframework-vim'
-Plug 'skwp/vim-html-escape'
-Plug 'mxw/vim-jsx'
-Plug 'jparise/vim-graphql'
-Plug 'christophermca/meta5'
-
-
-" Entertainment
-"Plug 'ryanss/vim-hackernews'
-
+Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'ervandew/supertab'
+Plug 'mfukar/robotframework-vim'
+Plug 'evedovelli/rst-robotframework-syntax-vim'
+Plug 'rking/ag.vim'
+Plug 'schickling/vim-bufonly'
 call plug#end()
+let g:hybrid_custom_term_colors = 1
 
 """ Python3 VirtualEnv
-let g:python3_host_prog = expand('~/.config/nvim/env/bin/python')
+let g:python3_host_prog = expand('/bin/python3')
+let g:python_host_prog = expand('/bin/python')
+
 
 """ Coloring
 syntax on
-colorscheme meta5
-highlight Pmenu guibg=white guifg=black gui=bold
-highlight Comment gui=bold
-highlight Normal gui=none
-highlight NonText guibg=none
-
-" Opaque Background (Comment out to use terminal's profile)
-set termguicolors
-
+set number
+set t_Co=256
+"set relativenumber
+set nowrap
+set background=dark
+"set termguicolors
+set cursorline
+colorscheme hybrid
 " Transparent Background (For i3 and compton)86.227.
-highlight Normal guibg=NONE ctermbg=NONE
 highlight LineNr guibg=NONE ctermbg=NONE
+autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
+autocmd vimenter * hi EndOfBuffer guibg=NONE ctermbg=NONE
+
+set guicursor=n-v-c:block,i-ci-ve:ver24,a:blinkon100
 
 """ Other Configurations
 filetype plugin indent on
-set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
-set incsearch ignorecase smartcase hlsearch
 set ruler laststatus=2 showcmd showmode
 set list listchars=trail:»,
 set fillchars+=vert:\ 
-set wrap breakindent
 set encoding=utf-8
-set number
-set relativenumber
 set title
 set mouse=a
 """ Plugin Configurations
-
-" NERDTree
-let NERDTreeShowHidden=1
-let NERDTreeWinSize=35
-
-" Airline
-let g:airline_theme='minimalist'
-let g:airline_powerline_fonts = 1
-let g:airline_section_z = ' %{strftime("%-I:%M %p")}'
-let g:airline_section_warning = ''
-let g:airline#extensions#tabline#enabled = 1
-
 " Neovim :Terminal
 tmap <Esc> <C-\><C-n>
 tmap <C-w> <Esc><C-w>
@@ -115,30 +71,12 @@ let g:deoplete#enable_at_startup = 1
 " Disable documentation window
 set completeopt-=preview
 
-" vim-pydocstring
-let g:pydocstring_doq_path = '~/.config/nvim/env/bin/doq'
-
-" Supertab
-let g:SuperTabDefaultCompletionType = "<C-n>"
-
-" Ultisnips
-let g:UltiSnipsExpandTrigger="<C-Space>"
-let g:UltiSnipsJumpForwardTrigger="<Tab>"
-let g:UltiSnipsJumpBackwardTrigger="<C-x>"
-
-" EasyAlign
-xmap ga <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)
-
-" TagBar
-let g:tagbar_width = 30
-let g:tagbar_iconchars = ['↠', '↡']
-
 " fzf-vim
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-s': 'split',
   \ 'ctrl-v': 'vsplit' }
+
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
@@ -170,31 +108,39 @@ autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType journal setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 
+"" NERDTree configuration
+let g:NERDTreeChDirMode=2
+let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
+let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
+let g:NERDTreeShowBookmarks=1
+let g:nerdtree_tabs_focus_on_files=1
+let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
+let g:NERDTreeWinSize = 28
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
+
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='hybrid'
+let g:airline_powerline_fonts = 1
+let g:airline_section_z = ' %{strftime("%-I:%M %p")}'
+"let g:airline_section_warning = ''
+
+
 """ Custom Mappings
 
 let mapleader=","
 nmap <leader>q :NERDTreeToggle<CR>
-nmap <leader>w :TagbarToggle<CR>
 nmap <leader>ee :Colors<CR>
-nmap <leader>ea :AirlineTheme 
 nmap <leader>r :so ~/.config/nvim/init.vim<CR>
 xmap <leader>a gaip*
 nmap <leader>a gaip*
 nmap <leader>s <C-w>s<C-w>j:terminal<CR>
 nmap <leader>vs <C-w>v<C-w>l:terminal<CR>
-"nmap <leader>d <Plug>(pydocstring)
 nmap <leader>f :Files<CR>
-nmap <leader>g :Goyo<CR>
-nmap <leader>h :RainbowParentheses!!<CR>
-nmap <leader>j :set filetype=journal<CR>
-nmap <leader>k :ColorToggle<CR>
-nmap <leader>l :Limelight!!<CR>
-xmap <leader>l :Limelight!!<CR>
 autocmd FileType python nmap <leader>x :0,$!~/.config/nvim/env/bin/python -m yapf<CR>
-"nmap <leader>n :HackerNews best<CR>J
-    nmap <silent> <leader><leader> :noh<CR>
+nmap <silent> <leader><leader> :noh<CR>
 nmap <Tab> :bnext<CR>
 nmap <S-Tab> :bprevious<CR>
 nmap <leader>d :t. <CR>
-
+nmap <leader>t :BufOnly<CR>
 nnoremap <silent><c-s> :<c-u>update<cr>
